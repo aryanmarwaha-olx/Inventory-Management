@@ -1,21 +1,25 @@
 package in.olx.inventorymanagement.dto;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class InventoryDTO {
     private String sku;
-    private String type;
-    //private InventoryStatus status;
+    //private InventoryStatus primaryStatus;
     private String primaryLocation;
+    private Double costToCompany;
+    private LocalDateTime createdAt;
+    private LocalDateTime lastModified;
+    private String author;
+    private String dealer;
+    //private InventoryType type;
+    private Integer yearOfPurchase;
+
+
     private String vin;
     private String make;
     private String model;
     private String trim;
-    private Integer year;
-    private Double costPrice;
-    private Double sellingPrice;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private String createdBy;
-    private String updatedBy;
+    private String condition;
+    private LocalDate dateOfManufacture;
 }
 
