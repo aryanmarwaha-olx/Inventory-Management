@@ -1,20 +1,19 @@
 package in.olx.inventorymanagement.dto;
-import in.olx.inventorymanagement.entity.InventoryStatus;
-import in.olx.inventorymanagement.entity.InventoryType;
+import in.olx.inventorymanagement.enums.ItemType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class InventoryDTO {
     private String sku;
-   // Public InventoryStatus primaryStatus;
+   // Public ItemStatus primaryStatus;
     private String primaryLocation;
     private Double costToCompany;
     private LocalDateTime createdAt;
     private LocalDateTime lastModified;
     private String author;
     private String dealer;
-    private InventoryType type;
+    private ItemType type;
     private Integer yearOfPurchase;
 
 
@@ -24,7 +23,7 @@ public class InventoryDTO {
     private String trim;
     private String condition;
     private LocalDate dateOfManufacture;
-    //private InventoryStatus primaryStatus;
+    //private ItemStatus primaryStatus;
 
     public String getSku() {
         return sku;
@@ -32,11 +31,11 @@ public class InventoryDTO {
     public void setSku(String sku) {
         this.sku = sku;
     }
-//    public InventoryStatus getPrimaryStatus() {
-//        InventoryStatus primaryStatus;
+//    public ItemStatus getPrimaryStatus() {
+//        ItemStatus primaryStatus;
 //        return primaryStatus;
 //    }
-//    public void setPrimaryStatus(InventoryStatus primaryStatus) {
+//    public void setPrimaryStatus(ItemStatus primaryStatus) {
 //        this.primaryStatus = primaryStatus;
 //    }
     public String getPrimaryLocation() {
@@ -75,10 +74,10 @@ public class InventoryDTO {
     public void setDealer(String dealer) {
         this.dealer = dealer;
     }
-    public InventoryType getType() {
+    public ItemType getType() {
         return type;
     }
-    public void setType(InventoryType type) {
+    public void setType(ItemType type) {
         this.type = type;
     }
     public Integer getYearOfPurchase() {
