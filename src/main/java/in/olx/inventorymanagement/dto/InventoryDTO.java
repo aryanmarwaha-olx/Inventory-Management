@@ -1,17 +1,20 @@
 package in.olx.inventorymanagement.dto;
+import in.olx.inventorymanagement.entity.InventoryStatus;
+import in.olx.inventorymanagement.entity.InventoryType;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class InventoryDTO {
     private String sku;
-    //private InventoryStatus primaryStatus;
+   // Public InventoryStatus primaryStatus;
     private String primaryLocation;
     private Double costToCompany;
     private LocalDateTime createdAt;
     private LocalDateTime lastModified;
     private String author;
     private String dealer;
-    //private InventoryType type;
+    private InventoryType type;
     private Integer yearOfPurchase;
 
 
@@ -21,6 +24,7 @@ public class InventoryDTO {
     private String trim;
     private String condition;
     private LocalDate dateOfManufacture;
+    //private InventoryStatus primaryStatus;
 
     public String getSku() {
         return sku;
@@ -29,6 +33,7 @@ public class InventoryDTO {
         this.sku = sku;
     }
 //    public InventoryStatus getPrimaryStatus() {
+//        InventoryStatus primaryStatus;
 //        return primaryStatus;
 //    }
 //    public void setPrimaryStatus(InventoryStatus primaryStatus) {
@@ -70,12 +75,12 @@ public class InventoryDTO {
     public void setDealer(String dealer) {
         this.dealer = dealer;
     }
-//    public InventoryType getType() {
-//        return type;
-//    }
-//    public void setType(InventoryType type) {
-//        this.type = type;
-//    }
+    public InventoryType getType() {
+        return type;
+    }
+    public void setType(InventoryType type) {
+        this.type = type;
+    }
     public Integer getYearOfPurchase() {
         return yearOfPurchase;
     }
