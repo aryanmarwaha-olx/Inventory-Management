@@ -30,10 +30,10 @@ public class InventoryManager {
     }
 
     // Rest All Routes are to be added below:
-    @GetMapping
-    public InventoryDTO getAllInventories() {
-        return null;
-    }
+//    @GetMapping
+//    public InventoryDTO getAllInventories() {
+//        return null;
+//    }
 
     @PostMapping
     public ResponseEntity<Object> createInventory(@RequestBody CreateInventoryRequest requestDTO) {
@@ -48,13 +48,13 @@ public class InventoryManager {
 
     @GetMapping("/{sku}")
     public InventoryDTO getInventoryById(@PathVariable String sku) {
-        return null;
+        return inventoryManagingService.getInventoryBySKU(sku);
     }
 
     @PutMapping("/{sku}")
     public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) { return null; }
 
-    @GetMapping("/pagination")
+    @GetMapping("/")
     public Page<InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
         assert inventoryService != null;
         return  inventoryService.getAllInventoriesWithPagination(page);
