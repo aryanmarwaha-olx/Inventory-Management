@@ -1,4 +1,4 @@
-package in.olx.inventorymanagement.Interfaces;
+package in.olx.inventorymanagement.model.Interface;
 
 import java.time.LocalDate;
 

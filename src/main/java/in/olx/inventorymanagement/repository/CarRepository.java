@@ -1,6 +1,6 @@
 package in.olx.inventorymanagement.repository;
 
-import in.olx.inventorymanagement.entity.CarEntity;
+import in.olx.inventorymanagement.model.entity.CarEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

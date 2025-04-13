@@ -1,4 +1,4 @@
-package in.olx.inventorymanagement.enums;
+package in.olx.inventorymanagement.model.enums;
 
 public enum ItemType {
     CAR

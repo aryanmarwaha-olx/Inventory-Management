@@ -11,18 +11,16 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "car")
+@Table(name = "locations")
 @Component
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-public class CarEntity {
+public class LocationEntity {
     @Id
-    private Long        pid;
-    private String      vehicleIdentificationNumber;
-    private String      make;
-    private String      model;
-    private String      trim;
-    private String      color;
-    private LocalDate   dateOfManufacture;
+    private Long     lId;
+    private String   address;
+    private String   city;
+    private String   state;
+    private String   zip;
+    private String   country;
+    private String   phone;
+    private String   email;
 }

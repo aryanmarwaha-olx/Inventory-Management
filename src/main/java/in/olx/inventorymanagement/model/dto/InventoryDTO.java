@@ -1,5 +1,5 @@
-package in.olx.inventorymanagement.dto;
-import in.olx.inventorymanagement.enums.ItemType;
+package in.olx.inventorymanagement.model.dto;
+import in.olx.inventorymanagement.model.enums.ItemType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
