@@ -10,19 +10,43 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.UUID;
 
 @Entity
 @Table(name = "car")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarEntity {
+    public String      make;
+    public String      model;
+    public String      trim;
+    public String      color;
+    public String      dateOfManufacture;
+
     @Id
-    private String      vehicleIdentificationNumber;
-    private String      make;
-    private String      model;
-    private String      trim;
-    private String      color;
-    private String   dateOfManufacture;
+    public String      vehicleIdentificationNumber;
+
+    public CarEntity(String make, String model, String trim, String color, String dateOfManufacture) {
+        this.make = make;
+        this.model = model;
+        this.trim = trim;
+        this.color = color;
+        this.dateOfManufacture = dateOfManufacture;
+
+        vehicleIdentificationNumber = UUID.randomUUID().toString();
+    }
+
+    public HashMap<String, String> toHashMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("vehicleIdentificationNumber", vehicleIdentificationNumber);
+        map.put("make", make);
+        map.put("model", model);
+        map.put("trim", trim);
+        map.put("color", color);
+        map.put("dateOfManufacture", dateOfManufacture);
+        return map;
+    }
 }

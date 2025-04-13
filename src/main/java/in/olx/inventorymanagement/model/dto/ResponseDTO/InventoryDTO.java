@@ -1,5 +1,6 @@
 package in.olx.inventorymanagement.model.dto.ResponseDTO;
 
+import in.olx.inventorymanagement.model.enums.ProductType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,16 +14,61 @@ import java.util.HashMap;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InventoryDTO {
-    private String           sku;
-    private String           primaryStatus;
-    private String           primaryLocation;
-    private Integer          costToCompany;
-    private LocalDate        lastModified;
-    private String           middleMan;
-    private String           dealer;
-    private String           yearOfPurchase;
+    public String                   skuId;
+    public String                   primaryStatus;
+    public String                   primaryLocation;
+    public Integer                  costToCompany;
+    public String                   lastModified;
+    public String                   middleMan;
+    public String                   dealer;
+    public String                   yearOfPurchase;
 
-    public String            type;
+    public String                   type;
 
-    HashMap<String, String>  product              = new HashMap<>();
+    public HashMap<String, String>  product;
+
+    public InventoryDTO(String skuId,
+                        String primaryStatus,
+                        String primaryLocation,
+                        String lastModified,
+                        String middleMan,
+                        String dealer,
+                        Integer costToCompany,
+                        String yearOfPurchase,
+                        String type) {
+
+        this.skuId = skuId;
+        this.primaryStatus = primaryStatus;
+        this.primaryLocation = primaryLocation;
+        this.costToCompany = costToCompany;
+        this.lastModified = lastModified;
+        this.middleMan = middleMan;
+        this.dealer = dealer;
+        this.yearOfPurchase = yearOfPurchase;
+        this.type = type;
+        this.product = new HashMap<>();
+    }
+
+    public InventoryDTO(String skuId,
+                        String primaryStatus,
+                        String primaryLocation,
+                        String lastModified,
+                        String middleMan,
+                        String dealer,
+                        Integer costToCompany,
+                        String yearOfPurchase,
+                        String type,
+                        HashMap<String, String> product) {
+
+        this.skuId = skuId;
+        this.primaryStatus = primaryStatus;
+        this.primaryLocation = primaryLocation;
+        this.costToCompany = costToCompany;
+        this.lastModified = lastModified;
+        this.middleMan = middleMan;
+        this.dealer = dealer;
+        this.yearOfPurchase = yearOfPurchase;
+        this.type = type;
+        this.product = product;
+    }
 }

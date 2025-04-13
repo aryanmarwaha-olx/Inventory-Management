@@ -11,12 +11,17 @@ import in.olx.inventorymanagement.model.enums.ProductType;
 import in.olx.inventorymanagement.repository.InventoryRepository;
 import in.olx.inventorymanagement.repository.LocationRepository;
 import in.olx.inventorymanagement.repository.product.CarRepository;
+
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 
+import static java.lang.Integer.parseInt;
+
 @Service
+@Component
 public class InventoryManagingService {
 
     private final InventoryRepository inventoryRepository;
@@ -31,23 +36,57 @@ public class InventoryManagingService {
 
 
     public InventoryDTO createInventory(CreateInventoryRequest requestDTO) {
-        // database product - insert i.e car
         HashMap<String, String> productMap = requestDTO.getProduct();
 
         // code clean up required.
 
         CarEntity car = new CarEntity();
         CarEntity savedCar = new CarEntity();
-        ProductType productType = ProductType.CAR;
-        if (requestDTO.type.equals("car")) {
-            car = new CarEntity(productMap.get("vehicleIdentificationNumber"), productMap.get("make"), productMap.get("model"), productMap.get("trim"), productMap.get("color"), productMap.get("dateOfManufacture"));
-            savedCar = carRepository.save(car);
-            productType = ProductType.CAR;
-        }
+        String productType;
 
-        // Create a new InventoryEntity Object and save it.
-        // Inflate InventoryDTO object.
-        return new InventoryDTO();
+        if (requestDTO.type.equals("car")) {
+            car = new CarEntity(
+                    productMap.get("make"),
+                    productMap.get("model"),
+                    productMap.get("trim"),
+                    productMap.get("color"),
+                    productMap.get("dateOfManufacture")
+            );
+            savedCar = carRepository.save(car);
+            productType = "car";
+        } else {
+            productType = "car";
+        }
+        System.out.println(savedCar);
+
+        InventoryEntity inventoryEntity = new InventoryEntity(
+                savedCar.vehicleIdentificationNumber,
+                "created",
+                "car",
+                requestDTO.getCostToCompany(),
+                requestDTO.getPrimaryLocation(),
+                LocalDate.now().toString(),
+                LocalDate.now().toString(),
+                requestDTO.getDealer(),
+                requestDTO.getMiddleMan()
+        );
+//        System.out.println(inventoryEntity);
+
+        InventoryEntity savedInventoryEntity = inventoryRepository.save(inventoryEntity);
+
+        return new InventoryDTO(
+                savedInventoryEntity.getSkuId(),
+                savedInventoryEntity.getPrimaryStatus().toString(),
+                savedInventoryEntity.getPrimaryLocation(),
+                savedInventoryEntity.getCostToCompany(),
+                savedInventoryEntity.getUpdateDate().toString(),
+                savedInventoryEntity.getMiddleMan(),
+                savedInventoryEntity.getDealer(),
+                savedInventoryEntity.getCreateDate().toString(),
+                savedInventoryEntity.getProductType().toString(),
+                savedCar.toHashMap()
+        );
+//        return new InventoryDTO();
     }
 
     public InventoryDTO getInventoryBySKU(String sku) {
