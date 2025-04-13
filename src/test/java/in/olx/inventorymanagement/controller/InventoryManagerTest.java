@@ -24,4 +24,10 @@ class InventoryManagerTest {
     void testHealth() {
         assertEquals("Hello World!!", inventoryManager.health());
     }
+
+
+    @Test
+    public void getInventoryByIdWhenIdisNull() {
+
+    }
 }

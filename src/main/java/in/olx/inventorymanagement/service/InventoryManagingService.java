@@ -177,7 +177,8 @@ public class InventoryManagingService {
     }
 
     public InventoryDTO getInventoryBySKU(String sku) {
-        InventoryEntity inventoryEntity = inventoryRepository.getReferenceById(sku);
+        InventoryEntity inventoryEntity = inventoryRepository.findById(sku)
+                .orElseThrow(() -> new IllegalArgumentException("Inventory with SKU " + sku + " not found"));
         String productType = inventoryEntity.getProductType().toString();
         String productId = inventoryEntity.getProductId();
         InventoryDTO inventoryDTO = new InventoryDTO();
