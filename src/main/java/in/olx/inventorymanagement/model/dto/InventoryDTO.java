@@ -4,6 +4,7 @@ import in.olx.inventorymanagement.model.enums.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import in.olx.inventorymanagement.model.enums.ProductType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class InventoryDTO {
     private LocalDateTime lastModified;
     private String author;
     private String dealer;
-    private ItemType type;
+    private ProductType type;
     private Integer yearOfPurchase;
 
 

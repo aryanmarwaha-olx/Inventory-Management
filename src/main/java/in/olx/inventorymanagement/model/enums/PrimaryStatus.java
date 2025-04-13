@@ -1,6 +1,6 @@
 package in.olx.inventorymanagement.model.enums;
 
-public enum ItemStatus {
+public enum PrimaryStatus {
     CREATED,
     PROCURED,
     SOLD

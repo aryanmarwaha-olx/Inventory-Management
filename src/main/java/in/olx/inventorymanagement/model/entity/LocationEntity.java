@@ -12,10 +12,13 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "locations")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class LocationEntity {
     @Id
-    private Long     lId;
+    private String   lId;
     private String   address;
     private String   city;
     private String   state;

@@ -1,5 +1,5 @@
 package in.olx.inventorymanagement.model.enums;
 
-public enum ItemType {
+public enum ProductType {
     CAR
 }
