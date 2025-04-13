@@ -42,6 +42,34 @@ public class InventoryEntity {
             String dealer,
             String middleMan) {
 
+        if (productId == null || productId.isEmpty()) {
+            throw new IllegalArgumentException("Product ID cannot be null or empty");
+        }
+        if (primaryStatus == null || primaryStatus.isEmpty()) {
+            throw new IllegalArgumentException("Primary Status cannot be null or empty");
+        }
+        if (productType == null || productType.isEmpty()) {
+            throw new IllegalArgumentException("Product Type cannot be null or empty");
+        }
+        if (costToCompany == null || costToCompany < 0) {
+            throw new IllegalArgumentException("Cost to Company cannot be negative");
+        }
+        if (primaryLocation == null || primaryLocation.isEmpty()) {
+            throw new IllegalArgumentException("Primary Location cannot be null or empty");
+        }
+        if (updateDate == null || updateDate.isEmpty()) {
+            throw new IllegalArgumentException("Update Date cannot be null or empty");
+        }
+        if (createDate == null || createDate.isEmpty()) {
+            throw new IllegalArgumentException("Create Date cannot be null or empty");
+        }
+        if (dealer == null || dealer.isEmpty()) {
+            throw new IllegalArgumentException("Dealer cannot be null or empty");
+        }
+        if (middleMan == null || middleMan.isEmpty()) {
+            throw new IllegalArgumentException("Middle Man cannot be null or empty");
+        }
+
         this.productId = productId;
         this.primaryStatus = primaryStatus;
         this.productType = productType;

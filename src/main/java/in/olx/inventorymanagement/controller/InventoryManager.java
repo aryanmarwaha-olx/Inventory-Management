@@ -35,6 +35,9 @@ public class InventoryManager {
             InventoryDTO inventory = inventoryManagingService.createInventory(requestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(inventory);
         }
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Exception("Internal Server Error"));
         }

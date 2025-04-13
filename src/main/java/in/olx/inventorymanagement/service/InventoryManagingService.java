@@ -128,6 +128,7 @@ public class InventoryManagingService {
     public InventoryDTO createInventory(CreateInventoryRequest requestDTO) {
         HashMap<String, String> productMap = requestDTO.getProduct();
 
+        // Transactions need to be added.
         // code clean up required.
 
         CarEntity car = new CarEntity();
