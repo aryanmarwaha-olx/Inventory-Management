@@ -42,6 +42,9 @@ public class InventoryManager {
 
     @GetMapping("/{sku}")
     public InventoryDTO getInventoryById(@PathVariable String sku) {
+        if(sku == null || sku.isEmpty()) {
+            throw new IllegalArgumentException("SKU cannot be null or empty");
+        }
         return inventoryManagingService.getInventoryBySKU(sku);
     }
 
