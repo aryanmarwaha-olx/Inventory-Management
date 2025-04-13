@@ -18,6 +18,7 @@ public class Utils {
         inventoryDTO.setPrimaryLocation(inventoryEntity.getPrimaryLocation());
         inventoryDTO.setCostToCompany(inventoryEntity.getCostToCompany());
         inventoryDTO.setSkuId(inventoryEntity.getSkuId());
+        inventoryDTO.setLastModified(inventoryEntity.getUpdateDate());
     }
 
     public void populateCarToProductMap(CarEntity car, HashMap<String, String> productMap) {
