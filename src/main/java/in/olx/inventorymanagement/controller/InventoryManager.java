@@ -17,11 +17,14 @@ public class InventoryManager {
     private final InventoryService inventoryService;
     private final InventoryManagingService inventoryManagingService;
 
+
     @Autowired
     public InventoryManager (InventoryService inventoryService, InventoryManagingService inventoryManagingService) {
         this.inventoryManagingService = inventoryManagingService;
         this.inventoryService = inventoryService;
     }
+
+
 
     @GetMapping ("/health")
     public String health() {
@@ -43,6 +46,7 @@ public class InventoryManager {
     public InventoryDTO getInventoryById(@PathVariable String sku) {
         return inventoryManagingService.getInventoryBySKU(sku);
     }
+
 
     @PutMapping("/{sku}")
     public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) {
