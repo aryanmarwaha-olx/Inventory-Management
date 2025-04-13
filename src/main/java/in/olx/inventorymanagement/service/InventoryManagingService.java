@@ -49,4 +49,37 @@ public class InventoryManagingService {
         // Inflate InventoryDTO object.
         return new InventoryDTO();
     }
+
+    public InventoryDTO getInventoryBySKU(String sku) {
+        InventoryEntity inventoryEntity = inventoryRepository.getReferenceById(sku);
+        String productType = inventoryEntity.getProductType().toString();
+        String productId = inventoryEntity.getProductId();
+        InventoryDTO inventoryDTO = new InventoryDTO();
+        populateInventoryDTOFromInventoryEntity(inventoryDTO,inventoryEntity);
+        HashMap<String, String> productMap = new HashMap<>();
+        if(productType.equals("car")) {
+            CarEntity car = carRepository.getReferenceById(productId);
+            populateCarToProductMap(car,productMap);
+        }
+        inventoryDTO.setProduct(productMap);
+        return inventoryDTO;
+    }
+
+    public void populateInventoryDTOFromInventoryEntity(InventoryDTO inventoryDTO, InventoryEntity inventoryEntity) {
+        inventoryDTO.setDealer(inventoryEntity.getDealer());
+        inventoryDTO.setMiddleMan(inventoryEntity.getMiddleMan());
+        inventoryDTO.setPrimaryStatus(inventoryEntity.getPrimaryStatus().toString());
+        inventoryDTO.setType(inventoryEntity.getProductType().toString());
+        inventoryDTO.setPrimaryLocation(inventoryEntity.getStoreLocation());
+        inventoryDTO.setCostToCompany(inventoryEntity.getCostToCompany());
+    }
+
+    public void populateCarToProductMap(CarEntity car, HashMap<String, String> productMap) {
+        productMap.put("vehicleIdentificationNumber", car.getVehicleIdentificationNumber());
+        productMap.put("make", car.getMake());
+        productMap.put("model", car.getModel());
+        productMap.put("trim", car.getTrim());
+        productMap.put("color", car.getColor());
+        productMap.put("dateOfManufacture", car.getDateOfManufacture());
+    }
 }
