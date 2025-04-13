@@ -1,23 +1,24 @@
 package in.olx.inventorymanagement.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import in.olx.inventorymanagement.model.Interface.Product;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "car")
 @Component
-//@Data
+@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
-public class CarEntity {
+public class CarEntity implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long        pid;
     private String      vehicleIdentificationNumber;
     private String      make;
