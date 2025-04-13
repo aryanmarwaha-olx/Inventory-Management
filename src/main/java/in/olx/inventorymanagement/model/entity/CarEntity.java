@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "car")
 @Data
@@ -14,7 +16,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CarEntity {
     @Id
-    private Long id;
-    private String sku;
-
+    private Long pid;
+    private String vehicleIdentificationNumber;
+    private String make;
+    private String model;
+    private String trim;
+    private String color;
+    private LocalDate dateOfManufacture;
 }
