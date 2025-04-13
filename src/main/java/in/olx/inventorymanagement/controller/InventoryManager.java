@@ -14,7 +14,6 @@ import in.olx.inventorymanagement.service.InventoryService;
 import org.springframework.data.domain.Page;
 
 @RestController
-@RequestMapping ("/")
 public class InventoryManager {
 
     private final InventoryService inventoryService;
@@ -59,21 +58,13 @@ public class InventoryManager {
     }
 
 
-//    @GetMapping("/{sku}")
-//    public InventoryDTO getInventoryById(@PathVariable String sku) {
-//        return null;
-//    }
-//
-//
-//    @PutMapping("/{sku}")
-//    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) { return null; }
+    @PutMapping("/{sku}")
+    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) {
+        return null;
+    }
 
 
-    //pagination begins
-
-
-
-    @GetMapping("/pagination")
+    @GetMapping
     public Page<in.olx.inventorymanagement.model.dto.InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
         return inventoryService.getAllInventoriesWithPagination(page);
     }
