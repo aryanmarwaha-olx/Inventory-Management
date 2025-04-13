@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<InventoryEntity, Long> {
-    Optional<InventoryEntity> findBySkuId(Long skuId);
+    public Optional<InventoryEntity> findBySkuId(String skuId);
 
 }

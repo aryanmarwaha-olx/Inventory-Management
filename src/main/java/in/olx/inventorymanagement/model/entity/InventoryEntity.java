@@ -30,4 +30,5 @@ public class InventoryEntity {
     private LocalDate       createDate;
     private String          dealer;
     private String          middleManId;
+
 }
