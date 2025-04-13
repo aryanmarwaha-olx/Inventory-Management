@@ -2,16 +2,19 @@ package in.olx.inventorymanagement.controller;
 
 import in.olx.inventorymanagement.model.dto.InventoryDTO;
 import in.olx.inventorymanagement.service.InventoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import in.olx.inventorymanagement.service.InventoryServiceImpl;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping ("/inventories")
 public class InventoryManager {
 
-    private final InventoryService inventoryService = null;
+    private final InventoryService inventoryService;
+
+    public InventoryManager() {
+        inventoryService = null;
+    }
 
 
     @GetMapping ("/health")
@@ -40,8 +43,9 @@ public class InventoryManager {
         return null;
     }
 
-    @GetMapping
+    @GetMapping("/pagination")
     public Page<InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
+        assert inventoryService != null;
         return  inventoryService.getAllInventoriesWithPagination(page);
     }
 }
