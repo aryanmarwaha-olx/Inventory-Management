@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping ("/")
+@RequestMapping ("/inventories")
 public class InventoryManager {
 
 
@@ -16,8 +16,23 @@ public class InventoryManager {
     }
 
     // Rest All Routes are to be added below:
+    @GetMapping("")
+    public InventoryDTO getAllInventories() {
+        return null;
+    }
 
+    @GetMapping("/sku}")
+    public InventoryDTO getInventoryById(@PathVariable String sku) {
+        return null;
+    }
 
+    @PutMapping("/{sku}")
+    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) {
+        return null;
+    }
 
-
+    @PostMapping("")
+    public InventoryDTO createInventory(@RequestBody InventoryDTO inventoryDTO) {
+        return null;
+    }
 }
