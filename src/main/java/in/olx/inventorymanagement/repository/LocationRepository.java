@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface LocationRepository extends JpaRepository<LocationEntity, Long> {
-    public Optional<LocationEntity> findByAddress(String address);
+public interface LocationRepository extends JpaRepository<LocationEntity, String> {
+    Optional<LocationEntity> findByAddress(String address);
 }

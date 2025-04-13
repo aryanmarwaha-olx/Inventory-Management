@@ -1,21 +1,28 @@
 package in.olx.inventorymanagement.controller;
 
-import in.olx.inventorymanagement.model.dto.InventoryDTO;
-import in.olx.inventorymanagement.service.InventoryService;
-import in.olx.inventorymanagement.service.InventoryServiceImpl;
-import org.springframework.data.domain.Page;
+import in.olx.inventorymanagement.model.dto.ResponseDTO.InventoryDTO;
+import in.olx.inventorymanagement.model.dto.requestDTO.CreateInventoryRequest;
+import in.olx.inventorymanagement.service.InventoryManagingService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import in.olx.inventorymanagement.service.InventoryService;
+import org.springframework.data.domain.Page;
+
 @RestController
-@RequestMapping ("/inventories")
+@RequestMapping ("/")
 public class InventoryManager {
 
+    private final InventoryManagingService inventoryManagingService;
     private final InventoryService inventoryService;
 
-    public InventoryManager() {
-        inventoryService = null;
+    InventoryManager (InventoryManagingService inventoryManagingService) {
+        this.inventoryManagingService = inventoryManagingService;
+        this.inventoryService = null;
     }
-
 
     @GetMapping ("/health")
     public String health() {
@@ -23,9 +30,20 @@ public class InventoryManager {
     }
 
     // Rest All Routes are to be added below:
-    @GetMapping("")
+    @GetMapping
     public InventoryDTO getAllInventories() {
         return null;
+    }
+
+    @PostMapping
+    public ResponseEntity<Object> createInventory(@RequestBody CreateInventoryRequest requestDTO) {
+        try {
+            InventoryDTO inventory = inventoryManagingService.createInventory(requestDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(inventory);
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Exception("Internal Server Error"));
+        }
     }
 
     @GetMapping("/{sku}")
@@ -34,14 +52,7 @@ public class InventoryManager {
     }
 
     @PutMapping("/{sku}")
-    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) {
-        return null;
-    }
-
-    @PostMapping("")
-    public InventoryDTO createInventory(@RequestBody InventoryDTO inventoryDTO) {
-        return null;
-    }
+    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) { return null; }
 
     @GetMapping("/pagination")
     public Page<InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {

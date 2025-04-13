@@ -27,5 +27,3 @@ public class InventoryServiceImpl implements InventoryService {
                 });
     }
 }
-
-

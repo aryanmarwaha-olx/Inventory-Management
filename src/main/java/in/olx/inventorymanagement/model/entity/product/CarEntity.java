@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
+@Builder
 public class CarEntity {
     @Id
     private String      vehicleIdentificationNumber;
@@ -23,5 +24,5 @@ public class CarEntity {
     private String      model;
     private String      trim;
     private String      color;
-    private LocalDate   dateOfManufacture;
+    private String   dateOfManufacture;
 }
