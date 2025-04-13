@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 
 @Component
-public class Utill {
+public class Utils {
     public void populateInventoryDTOFromInventoryEntity(InventoryDTO inventoryDTO, InventoryEntity inventoryEntity) {
         inventoryDTO.setDealer(inventoryEntity.getDealer());
         inventoryDTO.setMiddleMan(inventoryEntity.getMiddleMan());

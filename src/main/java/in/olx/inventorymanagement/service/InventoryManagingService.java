@@ -8,11 +8,9 @@ import in.olx.inventorymanagement.model.entity.InventoryEntity;
 import in.olx.inventorymanagement.model.entity.product.CarEntity;
 
 import in.olx.inventorymanagement.repository.InventoryRepository;
-import in.olx.inventorymanagement.repository.LocationRepository;
 import in.olx.inventorymanagement.repository.product.CarRepository;
 
-import in.olx.inventorymanagement.utill.Utill;
-import org.springframework.beans.factory.annotation.Autowired;
+import in.olx.inventorymanagement.utill.Utils;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +24,14 @@ import static java.lang.Integer.parseInt;
 public class InventoryManagingService {
 
     private final InventoryRepository inventoryRepository;
-    private final LocationRepository locationRepository;
     private final CarRepository carRepository;
 
-    private final Utill utill;
+    private final Utils util;
 
-    InventoryManagingService(InventoryRepository inventoryRepository, LocationRepository locationRepository, CarRepository carRepository, Utill utill) {
+    InventoryManagingService(InventoryRepository inventoryRepository,  CarRepository carRepository, Utils util) {
         this.inventoryRepository = inventoryRepository;
-        this.locationRepository = locationRepository;
         this.carRepository = carRepository;
-        this.utill = utill;
+        this.util = util;
     }
 
 
@@ -95,11 +91,11 @@ public class InventoryManagingService {
         String productType = inventoryEntity.getProductType().toString();
         String productId = inventoryEntity.getProductId();
         InventoryDTO inventoryDTO = new InventoryDTO();
-        utill.populateInventoryDTOFromInventoryEntity(inventoryDTO,inventoryEntity);
+        util.populateInventoryDTOFromInventoryEntity(inventoryDTO,inventoryEntity);
         HashMap<String, String> productMap = new HashMap<>();
         if(productType.equals("car")) {
             CarEntity car = carRepository.getReferenceById(productId);
-            utill.populateCarToProductMap(car,productMap);
+            util.populateCarToProductMap(car,productMap);
         }
         inventoryDTO.setProduct(productMap);
         return inventoryDTO;

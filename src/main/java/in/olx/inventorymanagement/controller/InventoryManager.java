@@ -1,15 +1,13 @@
 package in.olx.inventorymanagement.controller;
 
+import in.olx.inventorymanagement.model.dto.CarInventoryDTO;
 import in.olx.inventorymanagement.model.dto.ResponseDTO.InventoryDTO;
 import in.olx.inventorymanagement.model.dto.requestDTO.CreateInventoryRequest;
 import in.olx.inventorymanagement.service.InventoryManagingService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
 import in.olx.inventorymanagement.service.InventoryService;
 import org.springframework.data.domain.Page;
 
@@ -19,27 +17,16 @@ public class InventoryManager {
     private final InventoryService inventoryService;
     private final InventoryManagingService inventoryManagingService;
 
-
     @Autowired
     public InventoryManager (InventoryService inventoryService, InventoryManagingService inventoryManagingService) {
         this.inventoryManagingService = inventoryManagingService;
         this.inventoryService = inventoryService;
     }
 
-
-
     @GetMapping ("/health")
     public String health() {
         return "Hello World!!";
     }
-
-
-    // Rest All Routes are to be added below:
-//    @GetMapping
-//    public InventoryDTO getAllInventories() {
-//        return null;
-//    }
-
 
     @PostMapping
     public ResponseEntity<Object> createInventory(@RequestBody CreateInventoryRequest requestDTO) {
@@ -57,16 +44,13 @@ public class InventoryManager {
         return inventoryManagingService.getInventoryBySKU(sku);
     }
 
-
     @PutMapping("/{sku}")
     public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) {
         return null;
     }
 
-
     @GetMapping
-    public Page<in.olx.inventorymanagement.model.dto.InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
+    public Page<CarInventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
         return inventoryService.getAllInventoriesWithPagination(page);
     }
-
 }

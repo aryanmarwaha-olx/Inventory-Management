@@ -1,18 +1,12 @@
 package in.olx.inventorymanagement.model.dto;
-import in.olx.inventorymanagement.model.enums.ProductType;
-import in.olx.inventorymanagement.model.enums.PrimaryStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import in.olx.inventorymanagement.model.enums.ProductType;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InventoryDTO {
+public class CarInventoryDTO {
     private String sku;
 
     private String primaryStatus;
