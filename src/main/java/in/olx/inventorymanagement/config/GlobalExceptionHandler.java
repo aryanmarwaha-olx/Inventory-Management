@@ -11,10 +11,25 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(Exception.class)
+
+    // Handles CustomException
+    @ExceptionHandler(CustomException.class)
     public ResponseEntity<Map<String, String>> handleCustomException(CustomException ex) {
         Map<String, String> error = new HashMap<>();
         error.put("errorCode", ex.getErrorCode());
+        error.put("errorMessage", ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+    // Handles all other exceptions globally
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, String>> handleGlobalException(Exception ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("errorCode", "500");
+        error.put("errorMessage", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
+
+
+

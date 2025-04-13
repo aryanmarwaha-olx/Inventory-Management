@@ -4,6 +4,7 @@ import in.olx.inventorymanagement.model.dto.ResponseDTO.InventoryDTO;
 import in.olx.inventorymanagement.model.dto.requestDTO.CreateInventoryRequest;
 import in.olx.inventorymanagement.service.InventoryManagingService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,9 @@ import org.springframework.data.domain.Page;
 @RequestMapping ("/")
 public class InventoryManager {
 
-    private final InventoryManagingService inventoryManagingService;
     private final InventoryService inventoryService;
+    private final InventoryManagingService inventoryManagingService;
+
 
     InventoryManager (InventoryManagingService inventoryManagingService) {
         this.inventoryManagingService = inventoryManagingService;
@@ -54,9 +56,17 @@ public class InventoryManager {
     @PutMapping("/{sku}")
     public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) { return null; }
 
-    @GetMapping("/")
-    public Page<InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
-        assert inventoryService != null;
-        return  inventoryService.getAllInventoriesWithPagination(page);
+    //pagination begins
+
+    @Autowired
+    public InventoryManager(InventoryService inventoryService, InventoryManagingService inventoryManagingService) {
+        this.inventoryManagingService = inventoryManagingService;
+        this.inventoryService = inventoryService;  // Spring will inject the InventoryService
     }
+
+    @GetMapping("/pagination")
+    public Page<in.olx.inventorymanagement.model.dto.InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
+        return inventoryService.getAllInventoriesWithPagination(page);
+    }
+
 }
