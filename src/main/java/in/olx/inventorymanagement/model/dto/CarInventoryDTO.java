@@ -11,21 +11,17 @@ public class CarInventoryDTO {
 
     private String primaryStatus;
     private String primaryLocation;
-    private Double costToCompany;
+    private Integer costToCompany;
     private String createdAt;
     private String lastModified;
-    private String author;
+    private String middleMan;
     private String dealer;
     private String type;
-
-    private Integer yearOfPurchase;
-
 
     private String vin;
     private String make;
     private String model;
     private String trim;
-    private String condition;
     private String dateOfManufacture;
 }
 
