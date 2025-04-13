@@ -14,16 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class InventoryDTO {
     private String sku;
-<<<<<<< Updated upstream
-    private PrimaryStatus primaryStatus;
-    private String primaryLocation;
-    private Double costToCompany;
-    private LocalDateTime createdAt;
-    private LocalDateTime lastModified;
-    private String author;
-    private String dealer;
-    private ProductType type;
-=======
+
     private String primaryStatus;
     private String primaryLocation;
     private Double costToCompany;
@@ -32,7 +23,7 @@ public class InventoryDTO {
     private String author;
     private String dealer;
     private String type;
->>>>>>> Stashed changes
+
     private Integer yearOfPurchase;
 
 
@@ -41,12 +32,6 @@ public class InventoryDTO {
     private String model;
     private String trim;
     private String condition;
-<<<<<<< Updated upstream
-    private LocalDate dateOfManufacture;
-=======
     private String dateOfManufacture;
->>>>>>> Stashed changes
-
-
 }
 

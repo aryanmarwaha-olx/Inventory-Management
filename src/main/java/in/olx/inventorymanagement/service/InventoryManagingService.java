@@ -6,8 +6,7 @@ import in.olx.inventorymanagement.model.dto.requestDTO.CreateInventoryRequest;
 
 import in.olx.inventorymanagement.model.entity.InventoryEntity;
 import in.olx.inventorymanagement.model.entity.product.CarEntity;
-import in.olx.inventorymanagement.model.enums.PrimaryStatus;
-import in.olx.inventorymanagement.model.enums.ProductType;
+
 import in.olx.inventorymanagement.repository.InventoryRepository;
 import in.olx.inventorymanagement.repository.LocationRepository;
 import in.olx.inventorymanagement.repository.product.CarRepository;
@@ -57,7 +56,6 @@ public class InventoryManagingService {
         } else {
             productType = "car";
         }
-        System.out.println(savedCar);
 
         InventoryEntity inventoryEntity = new InventoryEntity(
                 savedCar.vehicleIdentificationNumber,
@@ -70,7 +68,6 @@ public class InventoryManagingService {
                 requestDTO.getDealer(),
                 requestDTO.getMiddleMan()
         );
-//        System.out.println(inventoryEntity);
 
         InventoryEntity savedInventoryEntity = inventoryRepository.save(inventoryEntity);
 
@@ -86,7 +83,6 @@ public class InventoryManagingService {
                 savedInventoryEntity.getProductType().toString(),
                 savedCar.toHashMap()
         );
-//        return new InventoryDTO();
     }
 
     public InventoryDTO getInventoryBySKU(String sku) {
@@ -109,7 +105,7 @@ public class InventoryManagingService {
         inventoryDTO.setMiddleMan(inventoryEntity.getMiddleMan());
         inventoryDTO.setPrimaryStatus(inventoryEntity.getPrimaryStatus().toString());
         inventoryDTO.setType(inventoryEntity.getProductType().toString());
-        inventoryDTO.setPrimaryLocation(inventoryEntity.getStoreLocation());
+        inventoryDTO.setPrimaryLocation(inventoryEntity.getPrimaryLocation());
         inventoryDTO.setCostToCompany(inventoryEntity.getCostToCompany());
     }
 
