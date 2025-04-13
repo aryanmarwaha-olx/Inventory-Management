@@ -11,6 +11,8 @@ import in.olx.inventorymanagement.repository.InventoryRepository;
 import in.olx.inventorymanagement.repository.LocationRepository;
 import in.olx.inventorymanagement.repository.product.CarRepository;
 
+import in.olx.inventorymanagement.utill.Utill;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +29,13 @@ public class InventoryManagingService {
     private final LocationRepository locationRepository;
     private final CarRepository carRepository;
 
-    InventoryManagingService(InventoryRepository inventoryRepository, LocationRepository locationRepository, CarRepository carRepository) {
+    private final Utill utill;
+
+    InventoryManagingService(InventoryRepository inventoryRepository, LocationRepository locationRepository, CarRepository carRepository, Utill utill) {
         this.inventoryRepository = inventoryRepository;
         this.locationRepository = locationRepository;
         this.carRepository = carRepository;
+        this.utill = utill;
     }
 
 
@@ -90,31 +95,15 @@ public class InventoryManagingService {
         String productType = inventoryEntity.getProductType().toString();
         String productId = inventoryEntity.getProductId();
         InventoryDTO inventoryDTO = new InventoryDTO();
-        populateInventoryDTOFromInventoryEntity(inventoryDTO,inventoryEntity);
+        utill.populateInventoryDTOFromInventoryEntity(inventoryDTO,inventoryEntity);
         HashMap<String, String> productMap = new HashMap<>();
         if(productType.equals("car")) {
             CarEntity car = carRepository.getReferenceById(productId);
-            populateCarToProductMap(car,productMap);
+            utill.populateCarToProductMap(car,productMap);
         }
         inventoryDTO.setProduct(productMap);
         return inventoryDTO;
     }
 
-    public void populateInventoryDTOFromInventoryEntity(InventoryDTO inventoryDTO, InventoryEntity inventoryEntity) {
-        inventoryDTO.setDealer(inventoryEntity.getDealer());
-        inventoryDTO.setMiddleMan(inventoryEntity.getMiddleMan());
-        inventoryDTO.setPrimaryStatus(inventoryEntity.getPrimaryStatus().toString());
-        inventoryDTO.setType(inventoryEntity.getProductType().toString());
-        inventoryDTO.setPrimaryLocation(inventoryEntity.getPrimaryLocation());
-        inventoryDTO.setCostToCompany(inventoryEntity.getCostToCompany());
-    }
 
-    public void populateCarToProductMap(CarEntity car, HashMap<String, String> productMap) {
-        productMap.put("vehicleIdentificationNumber", car.getVehicleIdentificationNumber());
-        productMap.put("make", car.getMake());
-        productMap.put("model", car.getModel());
-        productMap.put("trim", car.getTrim());
-        productMap.put("color", car.getColor());
-        productMap.put("dateOfManufacture", car.getDateOfManufacture());
-    }
 }

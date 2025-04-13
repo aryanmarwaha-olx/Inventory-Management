@@ -78,11 +78,4 @@ public class InventoryManager {
         return inventoryService.getAllInventoriesWithPagination(page);
     }
 
-
-
-//    @GetMapping("/pagination")
-//    public Page<InventoryDTO> getAllInventoriesWithPagination(@RequestParam(defaultValue = "0") int page) {
-//        assert inventoryService != null;
-//        return inventoryService.getAllInventoriesWithPagination(page);
-//    }
 }
