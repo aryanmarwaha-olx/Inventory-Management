@@ -3,6 +3,7 @@ package in.olx.inventorymanagement.controller;
 import in.olx.inventorymanagement.model.dto.CarInventoryDTO;
 import in.olx.inventorymanagement.model.dto.ResponseDTO.InventoryDTO;
 import in.olx.inventorymanagement.model.dto.requestDTO.CreateInventoryRequest;
+import in.olx.inventorymanagement.model.dto.requestDTO.UpdateInventoryRequest;
 import in.olx.inventorymanagement.service.InventoryManagingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +18,11 @@ public class InventoryManager {
     private final InventoryService inventoryService;
     private final InventoryManagingService inventoryManagingService;
 
-
     @Autowired
     public InventoryManager (InventoryService inventoryService, InventoryManagingService inventoryManagingService) {
         this.inventoryManagingService = inventoryManagingService;
         this.inventoryService = inventoryService;
     }
-
-
 
     @GetMapping ("/health")
     public String health() {
@@ -47,10 +45,13 @@ public class InventoryManager {
         return inventoryManagingService.getInventoryBySKU(sku);
     }
 
+    @PatchMapping("/{sku}")
+    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody UpdateInventoryRequest inventoryDTO) {
+        // Set the sku in the requestDTO before passing it to the service (since it's in the URL)
+        inventoryDTO.setSku(sku);
 
-    @PutMapping("/{sku}")
-    public InventoryDTO updateInventory(@PathVariable String sku, @RequestBody InventoryDTO inventoryDTO) {
-        return null;
+        // Call the service method to update the inventory and/or car
+        return inventoryManagingService.patchInventoryAndCar(inventoryDTO);
     }
 
     @GetMapping
